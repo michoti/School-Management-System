@@ -17,7 +17,9 @@ class ClassroomFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'section' => $this->faker->name(),
+            'grade' => $this->faker->numberBetween(2,100),
+            'teacher_id' => $this->faker->randomDigitNotNull(),
         ];
     }
 }
