@@ -14,4 +14,9 @@ class Teacher extends Model
         'second_name',
         'gender',
     ];
+
+    public function Classroom()
+    {
+        return $this->hasOne(Classroom::class);
+    }
 }
