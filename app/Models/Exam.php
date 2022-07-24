@@ -12,4 +12,9 @@ class Exam extends Model
     protected $fillable = [
         'name', 'type'
     ];
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'exam_student', 'exam_id');
+    }
 }
