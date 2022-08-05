@@ -1,10 +1,9 @@
 <?php
 
 use App\Http\Controllers\StudentController;
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 
-Route::middleware()
-    ->name('students.')
+Route::name('students.')
     ->group(function (){
 
     Route::get('/students', [StudentController::class, 'index'])->name('index');
