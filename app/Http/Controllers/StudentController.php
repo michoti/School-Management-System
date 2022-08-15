@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use App\Repositories\StudentRepository;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -15,7 +17,23 @@ class StudentController extends Controller
         $students = Student::query()->paginate($pageSize);
 
         return StudentResource::collection($students);
+    }
 
+    public function store(Request $request, StudentRepository $repository)
+    {
+        $payload = $request->only(['first_name','second_name','gender']);
 
+        $validator = Validator::make($payload, [
+            'first_name' => 'required|max:100|min:2|string',
+            'second_name' => 'required|max:100|min:2|string',
+            'gender' => 'required|string',
+        ]);
+
+        $validator->validate();
+
+        $created = $repository->create($payload);
+
+        return new StudentResource($created);
+        
     }
 }
