@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentUpdateRequest;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ class StudentController extends Controller
         
     }
 
-    public function update(Request $request,Student $student, StudentRepository $repository)
+    public function update(StudentUpdateRequest $request,Student $student, StudentRepository $repository)
     {
         $repository->update($student,$request->only(['first_name','second_name','gender']));
 
