@@ -23,4 +23,32 @@ class StudentRepository
             return $created_student;
         });
     }
+
+    public function update($student, array $attributes)
+    {
+        return DB::transaction(function()use($student, $attributes){
+            $updated_student = $student->update([
+                'first_name' => data_get($attributes,'first_name'),
+                'second_name' => data_get($attributes,'second_name'),
+                'gender' => data_get($attributes,'gender')
+            ]);
+
+            throw_if(!$updated_student, GeneralJsonException::class, 'Student update unsuccessful!',422);
+            
+            return $student;
+        });
+    }
+
+    public function delete($student)
+    {
+        DB::transaction(function() use($student) {
+            $deleted = $student->forceDelete();
+
+            throw_if(!$deleted, GeneralJsonException::class, 'Student deleted unsuccessful!', 422);
+
+            return $deleted;
+        });
+    }
+
+
 }

@@ -6,6 +6,7 @@ use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Repositories\StudentRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
@@ -36,4 +37,21 @@ class StudentController extends Controller
         return new StudentResource($created);
         
     }
+
+    public function update(Request $request,Student $student, StudentRepository $repository)
+    {
+        $repository->update($student,$request->only(['first_name','second_name','gender']));
+
+        return new StudentResource($student);        
+    }
+
+    public function destroy(Student $student, StudentRepository $repository)
+    {
+        $repository->delete($student);
+
+        return new JsonResponse([
+            'data' => 'delete successful'
+        ]);
+    }
+
 }
