@@ -26,7 +26,7 @@ class TeacherController extends Controller
         return new TeacherResource($teacher);
     }
 
-    public function create(Request $request,TeacherRepository $repository)
+    public function store(Request $request,TeacherRepository $repository)
     {
         $payload = $request->only(['first_name','second_name','gender']);
         $validator = Validator::make($payload,[
