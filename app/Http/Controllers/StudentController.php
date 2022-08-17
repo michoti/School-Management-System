@@ -21,6 +21,11 @@ class StudentController extends Controller
         return StudentResource::collection($students);
     }
 
+    public function show(Student $student)
+    {
+        return new StudentResource($student);
+    }
+
     public function store(Request $request, StudentRepository $repository)
     {
         $payload = $request->only(['first_name','second_name','gender']);
