@@ -31,6 +31,6 @@ class TeacherCreatedEvent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('public-teacher-channel');
     }
 }

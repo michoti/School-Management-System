@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Events\Teachers\TeacherCreatedEvent;
 use App\Exceptions\GeneralJsonException;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,8 @@ class TeacherRepository
            ]);
 
            throw_if(!$created_teacher, GeneralJsonException::class, 'Teacher account creation unsuccessful',422);
+
+           event(new TeacherCreatedEvent());
 
            return $created_teacher;
         });
