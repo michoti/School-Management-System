@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use Database\Factories\Helpers\FactoryHelper;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,6 +19,7 @@ class StudentFactory extends Factory
     public function definition()
     {
         return [
+            'user_id' => FactoryHelper::getRandomModelId(User::class),
             'first_name' => $this->faker->name(),
             'second_name' => $this->faker->name(),
             'gender' => $this->faker->word(),
