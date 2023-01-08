@@ -28,10 +28,11 @@ class TeacherController extends Controller
 
     public function store(Request $request,TeacherRepository $repository)
     {
-        $payload = $request->only(['first_name','second_name','gender']);
+        $payload = $request->only(['first_name','second_name','teacher_email','gender']);
         $validator = Validator::make($payload,[
             'first_name' => 'required|max:100|min:2|string',
             'second_name' => 'required|max:100|min:2|string',
+            'teacher_email' => 'unique:teachers,teacher_email|required',
             'gender' => 'required|string',
         ]);
         $validator->validate();

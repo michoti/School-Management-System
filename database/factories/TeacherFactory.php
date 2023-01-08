@@ -19,6 +19,7 @@ class TeacherFactory extends Factory
         return [
             'first_name' => $this->faker->name(),
             'second_name' => $this->faker->name(),
+            'teacher_email' => $this->faker->email(),
             'gender' => $this->faker->word(),
         ];
     }
