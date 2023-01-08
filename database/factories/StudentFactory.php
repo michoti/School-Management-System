@@ -19,7 +19,7 @@ class StudentFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => FactoryHelper::getRandomModelId(User::class),
+            // 'user_id' => FactoryHelper::getRandomModelId(User::class),
             'first_name' => $this->faker->name(),
             'second_name' => $this->faker->name(),
             'student_email' => $this->faker->email(),

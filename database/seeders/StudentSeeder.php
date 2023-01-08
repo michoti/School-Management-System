@@ -19,7 +19,6 @@ class StudentSeeder extends Seeder
      */
     public function run()
     {
-        Student::factory(10)->create();   
         
         User::create([
             'name' => 'admin',
@@ -38,5 +37,8 @@ class StudentSeeder extends Seeder
             'role_as' => 'teacher',
             'remember_token' => Str::random(10),
         ]);
+        
+        Student::factory(10)->create();   
+
     }
 }
