@@ -26,6 +26,7 @@ class StudentUpdateRequest extends FormRequest
         return [
             'first_name' => 'required|max:100|min:2|string',
             'second_name' => 'required|max:100|min:2|string',
+            'student_email' => 'required|unique:students,student_email',
             'gender' => 'required|string',
         ];
     }

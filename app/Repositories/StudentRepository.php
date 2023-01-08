@@ -15,6 +15,7 @@ class StudentRepository
             $created_student = Student::query()->create([
                 'first_name' => data_get($attributes, 'first_name'),
                 'second_name' => data_get($attributes, 'second_name'),
+                'student_email' => data_get($attributes, 'student_email'),
                 'gender' => data_get($attributes, 'gender'),
             ]);
 
@@ -30,6 +31,7 @@ class StudentRepository
             $updated_student = $student->update([
                 'first_name' => data_get($attributes,'first_name'),
                 'second_name' => data_get($attributes,'second_name'),
+                'student_email' => data_get($attributes,'student_email'),
                 'gender' => data_get($attributes,'gender')
             ]);
 

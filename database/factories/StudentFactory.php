@@ -22,6 +22,7 @@ class StudentFactory extends Factory
             'user_id' => FactoryHelper::getRandomModelId(User::class),
             'first_name' => $this->faker->name(),
             'second_name' => $this->faker->name(),
+            'student_email' => $this->faker->email(),
             'gender' => $this->faker->word(),
         ];
     }

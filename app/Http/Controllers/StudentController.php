@@ -28,11 +28,12 @@ class StudentController extends Controller
 
     public function store(Request $request, StudentRepository $repository)
     {
-        $payload = $request->only(['first_name','second_name','gender']);
+        $payload = $request->only(['first_name','second_name','student_email','gender']);
 
         $validator = Validator::make($payload, [
             'first_name' => 'required|max:100|min:2|string',
             'second_name' => 'required|max:100|min:2|string',
+            'student_email' => 'required|unique:students,student_email',
             'gender' => 'required|string',
         ]);
 
@@ -46,7 +47,7 @@ class StudentController extends Controller
 
     public function update(StudentUpdateRequest $request,Student $student, StudentRepository $repository)
     {
-        $repository->update($student,$request->only(['first_name','second_name','gender']));
+        $repository->update($student,$request->only(['first_name','second_name','student_email','gender']));
 
         return new StudentResource($student);        
     }
