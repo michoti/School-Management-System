@@ -15,6 +15,7 @@ class TeacherRepository
             $created_teacher = Teacher::query()->create([
                 'first_name' => data_get($attributes, 'first_name'),
                 'second_name' => data_get($attributes, 'second_name'),
+                'teacher_email' => data_get($attributes, 'teacher_email'),
                 'gender' => data_get($attributes, 'gender'),
            ]);
 
