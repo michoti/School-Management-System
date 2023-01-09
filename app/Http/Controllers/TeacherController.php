@@ -42,7 +42,7 @@ class TeacherController extends Controller
 
     public function update(TeacherUpdateRequest $request,Teacher $teacher,TeacherRepository $repository)
     {
-        $repository->update($teacher,$request->only(['first_name','second_name','gender']));
+        $repository->update($teacher,$request->only(['first_name','second_name','teacher_email','gender']));
         
         return new TeacherResource($teacher);
     }

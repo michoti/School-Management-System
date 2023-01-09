@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Events\Teachers\TeacherCreatedEvent;
+use App\Events\Teachers\TeacherDeletedEvent;
+use App\Events\Teachers\TeacherUpdatedEvent;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -21,6 +23,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         TeacherCreatedEvent::class => [
             \App\Listeners\TeacherCreatedListener::class,
+        ],
+        TeacherDeletedEvent::class => [
+            \App\Listeners\TeacherDeletedListener::class,
+        ],
+        TeacherUpdatedEvent::class => [
+            \App\Listeners\TeacherUpdatedListener::class,
         ],
     ];
 

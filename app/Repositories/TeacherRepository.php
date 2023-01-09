@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Events\Teachers\TeacherCreatedEvent;
+use App\Events\Teachers\TeacherDeletedEvent;
+use App\Events\Teachers\TeacherUpdatedEvent;
 use App\Exceptions\GeneralJsonException;
 use App\Models\Teacher;
 use Illuminate\Support\Facades\DB;
@@ -34,10 +36,13 @@ class TeacherRepository
             $updated_teacher = $teacher->update([
                 'first_name' => data_get($attributes,'first_name'),
                 'second_name' => data_get($attributes,'second_name'),
+                'teacher_email' => data_get($attributes,'teacher_email'),
                 'gender' => data_get($attributes,'gender')
             ]);
 
             throw_if(!$updated_teacher, GeneralJsonException::class, 'Teacher update unsuccessful!',422);
+
+            event(new TeacherUpdatedEvent());
             
             return $teacher;
         });
@@ -46,10 +51,12 @@ class TeacherRepository
 
     public function delete($teacher)
     {
-        DB::transaction(function() use($teacher) {
+        return DB::transaction(function() use($teacher) {
             $deleted = $teacher->forceDelete();
 
             throw_if(!$deleted, GeneralJsonException::class, 'Teacher deleted unsuccessful!', 422);
+
+            event(new TeacherDeletedEvent());
 
             return $deleted;
         });        
